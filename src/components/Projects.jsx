@@ -80,30 +80,6 @@ const ALL_PROJECTS = [
   },
   // Side Projects - Second Slider (Moving Left)
   {
-    title: 'Chat Application',
-    type: 'side',
-    desc: 'Real-time messaging app with Socket.IO and user authentication.',
-    isVideo: true,
-    video: 'https://commondatastorage.googleapis.com/gtv-videos-library/sample/ForBiggerJoyrides.mp4',
-    poster: 'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?auto=format&fit=crop&w=500&q=80'
-  },
-  {
-    title: 'Task Manager',
-    type: 'side',
-    desc: 'Collaborative task management with drag-and-drop kanban board.',
-    isVideo: true,
-    video: 'https://media.w3.org/cc0-video/big_buck_bunny_720p_30mb.mp4',
-    poster: 'https://images.unsplash.com/photo-1453614512568-c4024d13c247?auto=format&fit=crop&w=500&q=80'
-  },
-  {
-    title: 'API Testing Tool',
-    type: 'side',
-    desc: 'Postman-like tool for testing REST APIs with request/response logs.',
-    isVideo: true,
-    video: 'https://commondatastorage.googleapis.com/gtv-videos-library/sample/ElephantsDream.mp4',
-    poster: 'https://images.unsplash.com/photo-1516321318423-f06f70d504d0?auto=format&fit=crop&w=500&q=80'
-  },
-  {
     title: 'QR Code Menu',
     type: 'side',
     desc: 'Digital menu system with QR code scanning for restaurants and hotels.',
@@ -142,6 +118,13 @@ export default function Projects(){
           return
         }
 
+        // Ensure THREE is loaded before initializing Vanta
+        if (!THREE || !THREE.PerspectiveCamera) {
+          console.warn('THREE.js not fully loaded, skipping Vanta initialization')
+          setVantaLoaded(true)
+          return
+        }
+
         const module = await import('vanta/dist/vanta.topology.min')
         const TOPOLOGY = module.default
         
@@ -149,7 +132,7 @@ export default function Projects(){
 
         vantaEffect.current = TOPOLOGY({
           el: vantaRef.current,
-          THREE,
+          THREE: THREE,
           mouseControls: true,
           touchControls: true,
           gyroControls: false,
@@ -168,7 +151,8 @@ export default function Projects(){
       }
     }
 
-    setTimeout(initVanta, 150)
+    // Delay to ensure THREE.js is fully loaded
+    setTimeout(initVanta, 300)
 
     return () => {
       mounted = false

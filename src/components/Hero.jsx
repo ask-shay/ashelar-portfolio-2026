@@ -11,6 +11,13 @@ export default function Hero({ onStoryClick }){
     let mounted = true
     async function initVanta(){
       try{
+        // Ensure THREE is loaded before initializing Vanta
+        if (!THREE || !THREE.PerspectiveCamera) {
+          console.warn('THREE.js not fully loaded, skipping Vanta initialization')
+          setVantaLoaded(true)
+          return
+        }
+
         const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
         
         if (isMobile) {
@@ -22,7 +29,7 @@ export default function Hero({ onStoryClick }){
           // Use a cooler cyan/teal fog on mobile so hero name remains readable
           vantaEffect.current = FOG({
             el: vantaRef.current,
-            THREE,
+            THREE: THREE,
             mouseControls: false,
             touchControls: true,
             gyroControls: false,
@@ -46,7 +53,7 @@ export default function Hero({ onStoryClick }){
 
           vantaEffect.current = HALO({
             el: vantaRef.current,
-            THREE,
+            THREE: THREE,
             mouseControls: true,
             touchControls: true,
             gyroControls: false,
@@ -69,7 +76,8 @@ export default function Hero({ onStoryClick }){
       }
     }
     
-    setTimeout(initVanta, 100)
+    // Delay to ensure THREE.js is fully loaded
+    setTimeout(initVanta, 200)
     
     return ()=>{
       mounted = false

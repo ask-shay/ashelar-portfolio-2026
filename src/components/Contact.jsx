@@ -9,12 +9,17 @@ export default function Contact() {
     let mounted = true
     async function initVanta() {
       try {
+        if (!THREE || !THREE.PerspectiveCamera) {
+          console.warn('THREE.js not fully loaded, skipping Vanta initialization')
+          return
+        }
+
         if (!vantaRef.current || !mounted) return
         const module = await import('vanta/dist/vanta.fog.min')
         const FOG = module.default
         vantaEffect.current = FOG({
           el: vantaRef.current,
-          THREE,
+          THREE: THREE,
           mouseControls: false,
           touchControls: false,
           gyroControls: false,
@@ -32,8 +37,8 @@ export default function Contact() {
       }
     }
 
-    // delay to avoid blocking initial paint
-    setTimeout(initVanta, 60)
+    // delay to ensure THREE.js is loaded
+    setTimeout(initVanta, 200)
 
     return () => {
       mounted = false

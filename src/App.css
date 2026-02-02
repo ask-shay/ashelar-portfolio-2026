@@ -3304,6 +3304,104 @@ defs {
   .fixed-social-btn{ top:0.6rem; right:0.6rem }
 }
 
+/* Landscape orientation on mobile devices - show horizontally at bottom like portrait */
+@media (max-width: 900px) and (orientation: landscape) {
+  .sidebar{
+    display: flex;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: auto;
+    transform: none;
+    z-index: 160;
+    justify-content: center;
+    padding: 0.4rem 0.3rem calc(env(safe-area-inset-bottom, 0px) + 0.4rem);
+    background: transparent;
+    max-height: none;
+    overflow: visible;
+    flex-direction: row;
+    align-items: center;
+    gap: 0;
+  }
+
+  .sidebar-nav{
+    padding: 0.4rem 0.5rem;
+    border-radius: 8px 8px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 0.5rem;
+    max-width: calc(100% - 1rem);
+  }
+
+  .sidebar-container{
+    flex-direction: row;
+    gap: 0.3rem;
+  }
+
+  .sidebar-link{
+    flex-direction: column;
+    padding: 0.4rem;
+    border-radius: 8px;
+    min-width: 32px;
+    min-height: 32px;
+  }
+
+  .sidebar-label{
+    display: none;
+  }
+
+  .sidebar-icon-wrapper{
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+
+  .sidebar-icon svg{
+    width: 12px;
+    height: 12px;
+  }
+
+  .sidebar-progress-ring{
+    display: none; /* Hide progress ring in landscape to save space */
+  }
+}
+
+/* Extra small landscape devices (like 932 x 430) */
+@media (max-width: 932px) and (max-height: 500px) and (orientation: landscape) {
+  .sidebar{
+    padding: 0.3rem 0.2rem calc(env(safe-area-inset-bottom, 0px) + 0.3rem);
+  }
+
+  .sidebar-nav{
+    padding: 0.3rem 0.4rem;
+    margin: 0 0.4rem;
+    max-width: calc(100% - 0.8rem);
+    border-radius: 6px 6px 0 0;
+  }
+
+  .sidebar-container{
+    gap: 0.25rem;
+  }
+
+  .sidebar-link{
+    padding: 0.3rem;
+    min-width: 28px;
+    min-height: 28px;
+    border-radius: 6px;
+  }
+
+  .sidebar-icon-wrapper{
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .sidebar-icon svg{
+    width: 10px;
+    height: 10px;
+  }
+}
+
 /* Very small screens: hide bottom sidebar and show story spinner below the tagline */
 @media (max-width: 360px) {
   /* hide compact bottom sidebar on very small devices */
