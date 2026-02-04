@@ -38,7 +38,10 @@ export default function About() {
           scale: 1.0,
           scaleMobile: 1.0,
           color: 0x06b6d4,
-          backgroundColor: 0x071018
+          color2: 0x8b5cf6,
+          backgroundColor: 0x071018,
+          size: 3.5,
+          spacing: 45
         })
         setVantaLoaded(true)
         console.info('Vanta DOTS initialized on About section')
@@ -48,7 +51,7 @@ export default function About() {
       }
     }
 
-    setTimeout(initVanta, 200)
+    setTimeout(initVanta, 150)
 
     return () => {
       mounted = false
@@ -60,39 +63,46 @@ export default function About() {
     <section id="about" className={`about-section scroll-reveal ${vantaLoaded ? 'vanta-ready' : ''}`} ref={vantaRef}>
       <div className="container">
         <div className="section-intro">
-          <h2 className="section-title">Philosophy</h2>
-          <p className="section-subtitle">My approach to building meaningful digital experiences</p>
+          <h2 className="section-title">My Philosophy</h2>
+          <p className="section-subtitle">I focus on building software that is reliable, understandable, and easy to use.</p>
         </div>
 
         <div className="philosophy-block">
           <p className="philosophy-text">
-            I believe in crafting software that not only functions flawlessly but also creates genuine value for users. 
-            Every line of code is an opportunity to solve real problems, enhance experiences, and push the boundaries of what's possible.
+            <strong>Clean architecture</strong> and thoughtful interfaces matter because they reduce friction — both for users today and for developers maintaining the system tomorrow.
           </p>
         </div>
 
         <div className="principles-grid">
           <div className="principle-card">
-            <span className="principle-number">01</span>
+            <div className="principle-number">01</div>
+            <h3 className="principle-title">Scalable Architecture</h3>
+            <p className="principle-desc">
+              Building systems that grow with your ambitions, not limiting factors.
+            </p>
+          </div>
+
+          <div className="principle-card">
+            <div className="principle-number">02</div>
+            <h3 className="principle-title">Clean Code</h3>
+            <p className="principle-desc">
+              Clarity over cleverness, maintainable for years to come.
+            </p>
+          </div>
+
+          <div className="principle-card">
+            <div className="principle-number">03</div>
             <h3 className="principle-title">User-Centric Design</h3>
             <p className="principle-desc">
-              Every decision starts with the user. Understanding their needs, pain points, and goals drives the development process.
+              Technology should serve people, not the other way around.
             </p>
           </div>
 
           <div className="principle-card">
-            <span className="principle-number">02</span>
-            <h3 className="principle-title">Clean & Scalable</h3>
+            <div className="principle-number">04</div>
+            <h3 className="principle-title">Production Ready</h3>
             <p className="principle-desc">
-              Code should be maintainable, readable, and built to grow. Architecture matters as much as functionality.
-            </p>
-          </div>
-
-          <div className="principle-card">
-            <span className="principle-number">03</span>
-            <h3 className="principle-title">Continuous Learning</h3>
-            <p className="principle-desc">
-              Technology evolves rapidly. Staying curious and adapting to new tools and methodologies is essential.
+              Real solutions for real problems, not prototypes.
             </p>
           </div>
         </div>
@@ -100,6 +110,7 @@ export default function About() {
     </section>
   )
 }
+
 
 
 

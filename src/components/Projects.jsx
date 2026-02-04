@@ -94,6 +94,36 @@ const ALL_PROJECTS = [
     ],
     tech: ['React','Node','QR Code','MongoDB'],
     link: 'https://hotel-yelkot.netlify.app/'
+  },
+  {
+    title: 'API Testing Tool',
+    type: 'side',
+    desc: 'Postman-like tool for testing REST APIs with request/response logs.',
+    isVideo: true,
+    video: 'https://commondatastorage.googleapis.com/gtv-videos-library/sample/ElephantsDream.mp4',
+    poster: 'https://images.unsplash.com/photo-1516321318423-f06f70d504d0?auto=format&fit=crop&w=500&q=80',
+    tech: ['React','Node','Express','REST API']
+    // No link - will show "Under Progress"
+  },
+  {
+    title: 'Event Processing & Notification System',
+    type: 'side',
+    desc: 'Real-time event processing system with intelligent notification routing and delivery.',
+    isVideo: true,
+    video: 'https://commondatastorage.googleapis.com/gtv-videos-library/sample/ForBiggerJoyrides.mp4',
+    poster: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=500&q=80',
+    tech: ['Node.js','Socket.IO','Redis','WebSockets']
+    // No link - will show "Under Progress"
+  },
+  {
+    title: 'Authentication & Authorization System',
+    type: 'side',
+    desc: 'Comprehensive auth system with OAuth2, JWT, role-based access control, and multi-factor authentication.',
+    isVideo: true,
+    video: 'https://media.w3.org/cc0-video/big_buck_bunny_720p_30mb.mp4',
+    poster: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=500&q=80',
+    tech: ['Node.js','JWT','OAuth2','MongoDB','MFA']
+    // No link - will show "Under Progress"
   }
 ]
 

@@ -5,92 +5,102 @@ export default function Experience() {
 
   const experiences = [
     {
-      icon: '💼',
+      company: 'Tecogis',
       role: 'Full Stack Developer',
-      company: 'Tech Solutions Inc.',
+      period: 'Jan 2024 - Present',
       location: 'Mumbai, India',
-      period: '2022 - Present',
+      icon: '💼',
+      color: '#06b6d4',
       bullets: [
-        'Developed and maintained full-stack web applications using React, Node.js, and MongoDB',
-        'Implemented RESTful APIs and integrated third-party services',
-        'Collaborated with cross-functional teams to deliver high-quality software solutions',
-        'Optimized application performance and improved user experience'
+        'Built real-time, production-grade platforms using MERN, Socket.IO, and Docker',
+        'Developed a multiplayer card game with live gameplay, analytics, and QR-based interactions',
+        'Designed secure internal systems for diamond trading, including RFID audits, billing, and reporting',
+        'Implemented role-based access control, JWT authentication, and scalable REST APIs',
+        'Delivered event and vendor management systems with real-time dashboards and access tracking'
       ]
     },
     {
+      company: 'Uniton India',
+      role: 'Founder & Full Stack Developer',
+      period: 'Jun 2020 - Feb 2023',
+      location: 'Nashik, India',
       icon: '🚀',
-      role: 'Frontend Developer',
-      company: 'Digital Agency',
-      location: 'Remote',
-      period: '2021 - 2022',
+      color: '#8b5cf6',
       bullets: [
-        'Built responsive and interactive user interfaces using React and modern CSS',
-        'Worked on multiple client projects with tight deadlines',
-        'Implemented design systems and component libraries',
-        'Improved website performance and accessibility standards'
+        'Founded and built a MERN-stack e-commerce platform from concept to deployment',
+        'Developed secure authentication, product management, and order workflows',
+        'Implemented responsive UIs using React Hooks, Redux, and modern styling',
+        'Managed inventory, logistics, and operational automation end-to-end'
       ]
     },
     {
-      icon: '🎓',
-      role: 'Software Engineering Intern',
-      company: 'Startup Hub',
-      location: 'Mumbai, India',
-      period: '2020 - 2021',
+      company: 'Patanjali & Cropinno',
+      role: 'Project Coordinator',
+      period: 'Aug 2021 - Dec 2021',
+      location: 'India',
+      icon: '📊',
+      color: '#ec4899',
       bullets: [
-        'Learned full-stack development fundamentals',
-        'Contributed to open-source projects',
-        'Participated in code reviews and team meetings',
-        'Gained experience with version control and agile methodologies'
+        'Coordinated cross-organization delivery between Patanjali and Cropinno',
+        'Managed requirements, timelines, cost estimates, and stakeholder communication',
+        'Supported decision-making through structured reporting and presentations'
       ]
     }
   ]
 
-  const toggleExpanded = (index) => {
-    setExpandedIndex(expandedIndex === index ? null : index)
-  }
-
   return (
-    <section id="experience" className="experience-section scroll-reveal">
-      <div className="container">
-        <div className="section-header">
-          <h2>Work Experience</h2>
-          <p className="section-subtitle">My professional journey</p>
-        </div>
+    <section id="experience" className="container scroll-reveal experience-section">
+      <div className="section-header">
+        <h2>Work Experience</h2>
+        <p className="section-subtitle">3+ years of building scalable solutions</p>
+      </div>
 
-        <div className="experience-list">
-          {experiences.map((exp, index) => (
-            <div
-              key={index}
-              className={`experience-card ${expandedIndex === index ? 'expanded' : ''}`}
-              onClick={() => toggleExpanded(index)}
+      <div className="experience-list">
+        {experiences.map((exp, index) => (
+          <article
+            key={index}
+            className={`experience-card ${expandedIndex === index ? 'expanded' : ''}`}
+            style={{ animationDelay: `${index * 0.15}s` }}
+            onClick={() => setExpandedIndex(expandedIndex === index ? null : index)}
+          >
+            <div 
+              className="exp-icon" 
+              style={{ background: `linear-gradient(135deg, ${exp.color}22, ${exp.color}08)` }}
             >
-              <div className="exp-icon">{exp.icon}</div>
-              <div className="exp-header">
-                <div className="exp-title-block">
-                  <h3 className="exp-role">{exp.role}</h3>
-                  <p className="exp-company">{exp.company}</p>
-                  <p className="exp-location">{exp.location}</p>
-                </div>
-                <div className="exp-period">{exp.period}</div>
-              </div>
-              <div className="exp-indicator">+</div>
-              <div className="exp-content">
-                <ul className="exp-bullets">
-                  {exp.bullets.map((bullet, bulletIndex) => (
-                    <li key={bulletIndex}>
-                      <span className="bullet-icon">▸</span>
-                      <span>{bullet}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              <span>{exp.icon}</span>
             </div>
-          ))}
-        </div>
+            <div className="exp-header">
+              <div className="exp-title-block">
+                <h3 className="exp-role">{exp.role}</h3>
+                <p className="exp-company">{exp.company}</p>
+                <p className="exp-location">{exp.location}</p>
+              </div>
+              <div className="exp-period">{exp.period}</div>
+            </div>
+            <div className="exp-content">
+              <ul className="exp-bullets">
+                {exp.bullets.map((bullet, bulletIndex) => (
+                  <li 
+                    key={bulletIndex} 
+                    className="list-item"
+                    style={{ animationDelay: `${index * 0.15 + bulletIndex * 0.05}s` }}
+                  >
+                    <span className="bullet-icon">▸</span>
+                    {bullet}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="exp-indicator">
+              <span>{expandedIndex === index ? '−' : '+'}</span>
+            </div>
+          </article>
+        ))}
       </div>
     </section>
   )
 }
+
 
 
 

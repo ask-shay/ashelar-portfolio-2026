@@ -134,7 +134,7 @@ export default function Hero({ onStoryClick }){
             <h1 className="hero-name">Akshay Shelar</h1>
 
             {/* Main tagline */}
-            <h2 className="hero-tagline">Full Stack Software Developer</h2>
+            <h2 className="hero-tagline">Software Engineer (Full Stack)</h2>
             
             {/* Social icons removed from Hero - use header social links instead */}
 

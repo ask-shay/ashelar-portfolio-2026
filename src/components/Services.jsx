@@ -37,7 +37,10 @@ export default function Services() {
           minWidth: 200.00,
           scale: 1.0,
           scaleMobile: 1.0,
-          backgroundColor: 0x071018
+          color: 0x8b5cf6,
+          backgroundColor: 0x071018,
+          maxDistance: 28,
+          maxSpeed: 1.5
         })
         setVantaLoaded(true)
         console.info('Vanta RINGS initialized on Services section')
@@ -47,7 +50,7 @@ export default function Services() {
       }
     }
 
-    setTimeout(initVanta, 250)
+    setTimeout(initVanta, 150)
 
     return () => {
       mounted = false
@@ -58,52 +61,53 @@ export default function Services() {
   return (
     <section id="services" className={`services-section scroll-reveal ${vantaLoaded ? 'vanta-ready' : ''}`} ref={vantaRef}>
       <div className="container">
-        <div className="section-header">
-          <h2>Services</h2>
-          <p className="section-subtitle">What I can build for you</p>
+        <div className="section-intro">
+          <h2 className="section-title">What I Can Do For You</h2>
+          <p className="section-subtitle">Specialized expertise across the full stack</p>
         </div>
 
         <div className="services-grid">
           <div className="service-card">
-            <span className="service-icon">⚛️</span>
-            <h3 className="service-title">Frontend Development</h3>
+            <div className="service-icon">⚛️</div>
+            <h3 className="service-title">Full Stack Development</h3>
             <p className="service-desc">
-              React, Next.js, and modern JavaScript frameworks. Responsive, accessible, and performant user interfaces.
+              End-to-end web applications with React, Node.js, and modern databases. From frontend to backend deployment.
             </p>
-            <span className="service-arrow">→</span>
+            <div className="service-arrow">→</div>
           </div>
 
           <div className="service-card">
-            <span className="service-icon">🔧</span>
-            <h3 className="service-title">Backend Development</h3>
+            <div className="service-icon">⚡</div>
+            <h3 className="service-title">Real-time Systems</h3>
             <p className="service-desc">
-              Node.js, Express, RESTful APIs, and database design. Scalable server-side solutions.
+              WebSocket-powered applications with Socket.io. Real-time messaging, notifications, and live collaboration features.
             </p>
-            <span className="service-arrow">→</span>
+            <div className="service-arrow">→</div>
           </div>
 
           <div className="service-card">
-            <span className="service-icon">🚀</span>
-            <h3 className="service-title">Full Stack Solutions</h3>
+            <div className="service-icon">🏗️</div>
+            <h3 className="service-title">System Design</h3>
             <p className="service-desc">
-              End-to-end web applications from concept to deployment. MERN stack expertise.
+              Scalable architecture planning. Database design, API design, and microservices patterns for high-performance systems.
             </p>
-            <span className="service-arrow">→</span>
+            <div className="service-arrow">→</div>
           </div>
 
           <div className="service-card">
-            <span className="service-icon">🎨</span>
-            <h3 className="service-title">UI/UX Design</h3>
+            <div className="service-icon">🚀</div>
+            <h3 className="service-title">DevOps & Deployment</h3>
             <p className="service-desc">
-              User-centered design thinking. Creating intuitive and beautiful digital experiences.
+              Docker containerization, CI/CD pipelines, and cloud deployment. Production-ready infrastructure.
             </p>
-            <span className="service-arrow">→</span>
+            <div className="service-arrow">→</div>
           </div>
         </div>
       </div>
     </section>
   )
 }
+
 
 
 
