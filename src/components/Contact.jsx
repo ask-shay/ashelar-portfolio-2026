@@ -1,59 +1,17 @@
-import React, { useEffect, useRef } from 'react'
-import * as THREE from 'three'
+import React from 'react'
 
 export default function Contact() {
-  const vantaRef = useRef(null)
-  const vantaEffect = useRef(null)
-
-  useEffect(() => {
-    let mounted = true
-    async function initVanta() {
-      try {
-        if (!THREE || !THREE.PerspectiveCamera) {
-          console.warn('THREE.js not fully loaded, skipping Vanta initialization')
-          return
-        }
-
-        if (!vantaRef.current || !mounted) return
-        const module = await import('vanta/dist/vanta.fog.min')
-        const FOG = module.default
-        vantaEffect.current = FOG({
-          el: vantaRef.current,
-          THREE: THREE,
-          mouseControls: false,
-          touchControls: false,
-          gyroControls: false,
-          minHeight: 200.0,
-          minWidth: 200.0,
-          highlightColor: 0xffb347,
-          midtoneColor: 0x3b82f6,
-          lowlightColor: 0x8b5cf6,
-          baseColor: 0x071018,
-          speed: 1.0,
-          zoom: 0.9
-        })
-      } catch (err) {
-        console.error('Vanta (fog) failed to initialize on Contact info card:', err)
-      }
-    }
-
-    // delay to ensure THREE.js is loaded
-    setTimeout(initVanta, 200)
-
-    return () => {
-      mounted = false
-      if (vantaEffect.current && vantaEffect.current.destroy) vantaEffect.current.destroy()
-    }
-  }, [])
 
   return (
     <div className="contact-wrap-container">
+      <div className="container">
+        <div className="section-intro">
+          <h2 className="section-title">Let's Connect</h2>
+          <p className="section-subtitle">Have a project in mind or want to collaborate? Reach out — I'd love to hear from you.</p>
+        </div>
+      </div>
       <div className="contact-wrap contact-inner">
         <div className="contact-content">
-          <div className="contact-header">
-            <h2>Let's Connect</h2>
-            <p className="contact-subtitle">Have a project in mind or want to collaborate? Reach out — I'd love to hear from you.</p>
-          </div>
 
           <div className="contact-methods">
             <div className="contact-method">
@@ -89,8 +47,8 @@ export default function Contact() {
         </div>
 
         <aside className="contact-info">
-          <div className="info-vanta-card" id="info-vanta" ref={vantaRef}>
-            <div className="info-vanta-content">
+          <div className="info-card">
+            <div className="info-card-content">
               <div className="info-block">
                 <h4 className="info-title">Availability</h4>
                 <p className="info-text">Open for Full Stack roles, freelance & contract work. Based in Mumbai — open to remote & travel.</p>
@@ -101,7 +59,7 @@ export default function Contact() {
                 <ul className="info-list">
                   <li>Full Stack Developer</li>
                   <li>React & Node.js Specialist</li>
-                  <li>3+ Years Experience</li>
+                  <li>4+ Years Experience</li>
                   <li>Building scalable solutions</li>
                 </ul>
               </div>

@@ -6,7 +6,7 @@ export default function Hero({ onStoryClick }){
   const vantaEffect = useRef(null)
   const [vantaLoaded, setVantaLoaded] = useState(false)
 
-  // Initialize Vanta effect - FOG on mobile, HALO on desktop
+  // Initialize Vanta effect - HALO for both mobile and desktop
   useEffect(()=>{
     let mounted = true
     async function initVanta(){
@@ -18,58 +18,31 @@ export default function Hero({ onStoryClick }){
           return
         }
 
+        // Use HALO for both mobile and desktop
+        const module = await import('vanta/dist/vanta.halo.min')
+        const HALO = module.default
+        if(!vantaRef.current || !mounted) return
+
         const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
-        
-        if (isMobile) {
-          // Use FOG for mobile
-          const module = await import('vanta/dist/vanta.fog.min')
-          const FOG = module.default
-          if(!vantaRef.current || !mounted) return
 
-          // Use a cooler cyan/teal fog on mobile so hero name remains readable
-          vantaEffect.current = FOG({
-            el: vantaRef.current,
-            THREE: THREE,
-            mouseControls: false,
-            touchControls: true,
-            gyroControls: false,
-            minHeight: 200.00,
-            minWidth: 200.00,
-            scale: 1.0,
-            scaleMobile: 1.0,
-            color: 0x06b6d4,
-            backgroundColor: 0x041220,
-            showDots: false,
-            maxDistance: 30.0,
-            speed: 0.9
-          })
-          setVantaLoaded(true)
-          console.info('Vanta FOG initialized on Hero section (mobile)')
-        } else {
-          // Use HALO for desktop
-          const module = await import('vanta/dist/vanta.halo.min')
-          const HALO = module.default
-          if(!vantaRef.current || !mounted) return
-
-          vantaEffect.current = HALO({
-            el: vantaRef.current,
-            THREE: THREE,
-            mouseControls: true,
-            touchControls: true,
-            gyroControls: false,
-            minHeight: 200.00,
-            minWidth: 200.00,
-            scale: 1.0,
-            scaleMobile: 1.0,
-            backgroundColor: 0x071018,
-            baseColor: 0x06b6d4,
-            amplitudeFactor: 1.5,
-            xyFrequency: 0.5,
-            zFrequency: 0.5
-          })
-          setVantaLoaded(true)
-          console.info('Vanta HALO initialized on Hero section (desktop)')
-        }
+        vantaEffect.current = HALO({
+          el: vantaRef.current,
+          THREE: THREE,
+          mouseControls: !isMobile, // Disable mouse controls on mobile
+          touchControls: true,
+          gyroControls: false,
+          minHeight: 200.00,
+          minWidth: 200.00,
+          scale: 1.0,
+          scaleMobile: 1.0,
+          backgroundColor: 0x071018,
+          baseColor: 0x06b6d4,
+          amplitudeFactor: isMobile ? 1.2 : 1.5, // Slightly reduced amplitude on mobile
+          xyFrequency: 0.5,
+          zFrequency: 0.5
+        })
+        setVantaLoaded(true)
+        console.info(`Vanta HALO initialized on Hero section (${isMobile ? 'mobile' : 'desktop'})`)
       }catch(err){
         console.error('Vanta initialization failed:', err)
         setVantaLoaded(true)

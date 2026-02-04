@@ -884,7 +884,7 @@
 .btn.ghost{ background:transparent; border:1px solid rgba(255,255,255,0.06); color:var(--muted) }
 .btn.ghost:hover{ background:rgba(255,255,255,0.05); border-color: rgba(139,92,246,0.4); color: var(--accent-2) }
 
-.showcase h2, .projects-section h2, .contact-section h2{ margin:0 0 1rem 0; animation: slideInUp .6s ease .1s both; font-size:2rem; font-weight:700; background:linear-gradient(120deg, #e6eef8, var(--accent-2)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text }
+.showcase h2{ margin:0 0 1rem 0; animation: slideInUp .6s ease .1s both; font-size:2rem; font-weight:700; background:linear-gradient(120deg, #e6eef8, var(--accent-2)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text }
 
 .skill-bar{ height:10px; background:rgba(255,255,255,0.03); border-radius:8px; overflow:hidden }
 .skill-fill{ height:100%; background:linear-gradient(90deg,var(--accent),var(--accent-2)); box-shadow: 0 8px 20px rgba(6,182,212,0.06); transition: width .8s cubic-bezier(.2,.9,.3,1) }
@@ -908,6 +908,15 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+/* Ensure section-title is consistent across all sections */
+.section-intro .section-title {
+  font-size: 3rem;
+  font-weight: 800;
+  margin: 0 0 1rem 0;
+  color: var(--text);
+  letter-spacing: -0.5px;
 }
 
 .section-subtitle {
@@ -1412,19 +1421,20 @@ body {
 .contact-method {
   display: flex;
   gap: 1rem;
-  padding: 1.25rem;
-  background: linear-gradient(135deg, rgba(20,24,30,0.25), rgba(10,14,20,0.15));
-  border: 1px solid rgba(255,255,255,0.04);
-  border-radius: 12px;
-  transition: all 0.28s ease;
-  align-items: center;
+  padding: 1.75rem;
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.08), rgba(139, 92, 246, 0.06));
+  border: 1.5px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  transition: all 0.3s cubic-bezier(0.2, 0.9, 0.3, 1);
+  align-items: flex-start;
+  backdrop-filter: blur(8px) saturate(120%);
 }
 
 .contact-method:hover {
-  border-color: rgba(139,92,246,0.5);
-  background: linear-gradient(135deg, rgba(139,92,246,0.18), rgba(59,130,246,0.14));
-  box-shadow: 0 12px 32px rgba(139,92,246,0.25), inset 0 1px 0 rgba(255,255,255,0.1);
-  transform: translateY(-6px);
+  border-color: rgba(6, 182, 212, 0.3);
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.12), rgba(139, 92, 246, 0.1));
+  box-shadow: 0 20px 50px rgba(6, 182, 212, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transform: translateY(-4px);
 }
 
 .method-icon {
@@ -1439,33 +1449,40 @@ body {
 }
 
 .method-content h3 {
-  font-size: 1rem;
-  margin: 0 0 0.35rem 0;
+  font-size: 1.2rem;
+  margin: 0 0 0.5rem 0;
   color: #e6f2fb;
+  font-weight: 700;
+  letter-spacing: 0.2px;
 }
 
 .method-text {
   font-size: 0.95rem;
-  color: rgba(255,255,255,0.72);
-  margin: 0 0 0.6rem 0;
+  color: rgba(230, 238, 248, 0.85);
+  line-height: 1.6;
+  margin-bottom: 0.75rem;
 }
 
 .method-link {
   display: inline-block;
-  padding: 0.6rem 1rem;
-  background: linear-gradient(90deg,var(--accent),var(--accent-2));
-  border: none;
-  border-radius: 10px;
-  color: white;
+  padding: 0.7rem 1.4rem;
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.2), rgba(139, 92, 246, 0.2));
+  border: 1.5px solid rgba(6, 182, 212, 0.3);
+  border-radius: 12px;
+  color: #06b6d4;
   text-decoration: none;
   font-weight: 600;
   font-size: 0.95rem;
-  transition: all 0.18s ease;
+  transition: all 0.3s cubic-bezier(0.2, 0.9, 0.3, 1);
+  backdrop-filter: blur(8px);
 }
 
 .method-link:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 30px rgba(99,102,241,0.12);
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.3), rgba(139, 92, 246, 0.3));
+  border-color: rgba(6, 182, 212, 0.5);
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(6, 182, 212, 0.3);
 }
 
 /* Contact section - simple styling without Vanta */
@@ -1581,8 +1598,9 @@ body {
 .contact-wrap-container{ 
   position:relative; 
   overflow:hidden;
-  padding: 4rem 1rem;
-  background: linear-gradient(180deg, rgba(7,10,14,0.5), rgba(7,10,14,0.3));
+  padding: 6rem 1rem;
+  background: linear-gradient(180deg, rgba(7,16,24,0.5), rgba(10,18,28,0.3));
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 /* Vanta-backed info card (right side of Contact) */
@@ -1604,9 +1622,96 @@ body {
 .info-vanta-card .info-text{ margin:0; color:rgba(255,255,255,0.85); line-height:1.45 }
 .info-vanta-card .info-list{ margin:0; padding-left:1rem; color:rgba(255,255,255,0.9); list-style: disc }
 
+/* Subtle info card (replacing Vanta) */
+.info-card{
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  min-height: 300px;
+  width: 100%;
+  border: 1.5px solid rgba(6, 182, 212, 0.15);
+  box-shadow: 
+    0 10px 40px rgba(2, 6, 23, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.03) inset,
+    0 2px 8px rgba(6, 182, 212, 0.1);
+  background: linear-gradient(135deg, 
+    rgba(6, 182, 212, 0.08) 0%, 
+    rgba(139, 92, 246, 0.06) 50%,
+    rgba(7, 16, 24, 0.4) 100%);
+  backdrop-filter: blur(12px) saturate(120%);
+  transition: all 0.3s cubic-bezier(0.2, 0.9, 0.3, 1);
+}
+
+.info-card:hover{
+  border-color: rgba(6, 182, 212, 0.25);
+  box-shadow: 
+    0 15px 50px rgba(2, 6, 23, 0.6),
+    0 0 0 1px rgba(255, 255, 255, 0.05) inset,
+    0 4px 16px rgba(6, 182, 212, 0.15);
+  transform: translateY(-2px);
+}
+
+.info-card-content{ 
+  position: relative; 
+  z-index: 2; 
+  padding: 2rem; 
+  display: flex; 
+  flex-direction: column; 
+  gap: 1.5rem;
+  height: 100%;
+}
+
+.info-card .info-block{ 
+  background: transparent; 
+  padding: 0;
+  position: relative;
+}
+
+.info-card .info-block:not(:last-child)::after{
+  content: '';
+  position: absolute;
+  bottom: -0.75rem;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(6, 182, 212, 0.2) 50%, 
+    transparent 100%);
+}
+
+.info-card .info-title{ 
+  margin: 0 0 0.6rem 0; 
+  font-size: 1.1rem; 
+  color: #e6f2fb; 
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+.info-card .info-text{ 
+  margin: 0; 
+  color: rgba(230, 238, 248, 0.88); 
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.info-card .info-list{ 
+  margin: 0; 
+  padding-left: 1.2rem; 
+  color: rgba(230, 238, 248, 0.9); 
+  list-style: disc;
+  line-height: 1.8;
+}
+
+.info-card .info-list li{
+  margin-bottom: 0.4rem;
+}
+
 @media (max-width: 900px){
   .contact-wrap{ grid-template-columns: 1fr; }
   .info-vanta-card{ min-height: 240px }
+  .info-card{ min-height: 240px }
+  .info-card-content{ padding: 1.5rem; gap: 1.2rem; }
 }
 
 .contact-wrap-container canvas { 
@@ -1628,6 +1733,8 @@ body {
   position: relative;
   z-index: 2;
   grid-template-columns:1fr 380px;
+  gap: 3rem;
+  margin-top: 2rem;
 }
 
 @media (max-width:1000px){
@@ -1669,7 +1776,7 @@ body {
   .projects-track .project-card{ min-width: calc(50% - 0.6rem) }
   .contact-wrap{ grid-template-columns:1fr }
   .contact-form { gap: 1rem }
-  .showcase h2, .projects-section h2, .contact-section h2{ font-size:1.8rem }
+  .showcase h2{ font-size:1.8rem }
 }
 @media (max-width:768px){
   .projects-track .project-card{ min-width: calc(100% - 0.6rem) }
@@ -1678,7 +1785,7 @@ body {
   .contact-form { padding: 1.5rem; gap: 0.9rem }
   .form-header h3 { font-size: 1.5rem }
   .form-actions { gap: 0.6rem }
-  .showcase h2, .projects-section h2, .contact-section h2{ font-size:1.6rem }
+  .showcase h2{ font-size:1.6rem }
 }
 @media (max-width:600px){
   .hero-title{ font-size:1.8rem }
@@ -1695,7 +1802,7 @@ body {
   .form-actions { flex-direction: column }
   .submit-btn { width: 100% }
   .social-badge { font-size: 0.8rem; padding: 0.5rem 1rem }
-  .showcase h2, .projects-section h2, .contact-section h2{ font-size:1.4rem }
+  .showcase h2{ font-size:1.4rem }
 }
 @media (max-width:480px){
   .hero-title{ font-size:1.5rem }
@@ -1715,7 +1822,7 @@ body {
   .info-title { font-size: 0.9rem }
   .info-text { font-size: 0.85rem }
   .info-list li { font-size: 0.85rem }
-  .showcase h2, .projects-section h2, .contact-section h2{ font-size:1.3rem }
+  .showcase h2{ font-size:1.3rem }
 }
 
 /* Accessibility: focus states */
@@ -3875,6 +3982,16 @@ a:focus-visible, button:focus-visible {
   color: var(--text);
   margin-bottom: 0.5rem;
   animation: fadeInDown 0.6s ease 0.1s both;
+}
+
+/* Ensure all section titles use consistent styling */
+.projects-section .section-intro .section-title,
+.contact-wrap-container .section-intro .section-title,
+.journey-section .section-intro .section-title {
+  color: var(--text);
+  font-size: 3rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
 }
 
 .projects-section .section-subtitle {

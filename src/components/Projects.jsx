@@ -208,8 +208,8 @@ export default function Projects(){
   return (
     <section id="projects" className="projects-section" ref={vantaRef}>
       <div className="container">
-        <div className="section-header">
-          <h2>Projects</h2>
+        <div className="section-intro">
+          <h2 className="section-title">Projects</h2>
           <p className="section-subtitle">Featured work and side experiments</p>
         </div>
 

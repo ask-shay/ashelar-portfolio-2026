@@ -80,7 +80,6 @@ function App() {
         <Projects />
         
         <section className="container contact-section scroll-reveal" id="contact">
-          <h2>Connect</h2>
           <Contact />
         </section>
       </main>

@@ -112,9 +112,9 @@ export default function Journey() {
   return (
     <section id="journey" className={`story-section ${vantaLoaded ? 'vanta-ready' : ''}`} ref={vantaRef}>
       <div className="container">
-        <div className="story-header">
-          <h2 className="story-title">My Journey</h2>
-          <p className="story-subtitle">How I became a Full Stack Developer</p>
+        <div className="section-intro">
+          <h2 className="section-title">My Journey</h2>
+          <p className="section-subtitle">How I became a Full Stack Developer</p>
         </div>
 
         <div className="story-journey-map">

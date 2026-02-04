@@ -78,7 +78,7 @@ export default function About() {
             <div className="principle-number">01</div>
             <h3 className="principle-title">Scalable Architecture</h3>
             <p className="principle-desc">
-              Building systems that grow with your ambitions, not limiting factors.
+              Building systems that grow with your ambitions.
             </p>
           </div>
 
@@ -94,7 +94,7 @@ export default function About() {
             <div className="principle-number">03</div>
             <h3 className="principle-title">User-Centric Design</h3>
             <p className="principle-desc">
-              Technology should serve people, not the other way around.
+            Built to be intuitive, useful, and easy to use.
             </p>
           </div>
 
@@ -102,7 +102,7 @@ export default function About() {
             <div className="principle-number">04</div>
             <h3 className="principle-title">Production Ready</h3>
             <p className="principle-desc">
-              Real solutions for real problems, not prototypes.
+            Built to be dependable, secure, and ready to ship.
             </p>
           </div>
         </div>

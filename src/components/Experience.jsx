@@ -50,9 +50,9 @@ export default function Experience() {
 
   return (
     <section id="experience" className="container scroll-reveal experience-section">
-      <div className="section-header">
-        <h2>Work Experience</h2>
-        <p className="section-subtitle">3+ years of building scalable solutions</p>
+      <div className="section-intro">
+        <h2 className="section-title">Work Experience</h2>
+        <p className="section-subtitle">4+ years of building software solutions</p>
       </div>
 
       <div className="experience-list">
