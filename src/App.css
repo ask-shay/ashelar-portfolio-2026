@@ -46,28 +46,42 @@
 /* Theme toggle removed */
 
 
-/* Preloader overlay */
+/* ===== ELEGANT PRELOADER ===== */
 .preloader{
   position:fixed;
   inset:0;
   display:flex;
   align-items:center;
   justify-content:center;
-  background: linear-gradient(180deg, #0f1720 0%, #071018 100%);
+  background: var(--bg);
   z-index:2000;
-  transition:opacity 0.5s ease, visibility 0.5s ease;
+  transition:opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.8s ease;
   opacity:1;
   visibility:visible;
+  overflow: hidden;
 }
 
-/* Subtle background gradient */
-.preloader::before {
-  content: '';
+/* Elegant background gradient */
+.preloader-bg-gradient {
   position: absolute;
   inset: 0;
   background: 
-    radial-gradient(circle at 30% 40%, rgba(6,182,212,0.1) 0%, transparent 50%),
-    radial-gradient(circle at 70% 60%, rgba(139,92,246,0.1) 0%, transparent 50%);
+    radial-gradient(circle at 30% 40%, rgba(6,182,212,0.12) 0%, transparent 50%),
+    radial-gradient(circle at 70% 60%, rgba(139,92,246,0.12) 0%, transparent 50%),
+    linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+  animation: preloaderGradientShift 10s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* Subtle grid pattern */
+.preloader-grid {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(6,182,212,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(6,182,212,0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  opacity: 0.4;
   pointer-events: none;
 }
 
@@ -77,81 +91,246 @@
   pointer-events:none;
 }
 
-/* Simple loader container */
-.preloader-loader {
-  position: relative;
-  width: 80px;
-  height: 80px;
-  z-index: 10;
-}
-
-/* Creative spinning ring loader */
-.loader-ring {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  animation: loaderRotate 1.5s linear infinite;
-}
-
-.ring-segment {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  border: 3px solid transparent;
-}
-
-.ring-segment:nth-child(1) {
-  border-top-color: var(--accent);
-  clip-path: polygon(50% 50%, 0% 0%, 0% 50%);
-}
-
-.ring-segment:nth-child(2) {
-  border-right-color: var(--accent-2);
-  clip-path: polygon(50% 50%, 100% 0%, 100% 50%);
-  transform: rotate(90deg);
-}
-
-.ring-segment:nth-child(3) {
-  border-bottom-color: var(--accent);
-  clip-path: polygon(50% 50%, 100% 100%, 100% 50%);
-  transform: rotate(180deg);
-}
-
-.ring-segment:nth-child(4) {
-  border-left-color: var(--accent-2);
-  clip-path: polygon(50% 50%, 0% 100%, 0% 50%);
-  transform: rotate(270deg);
-}
-
-.loader-center {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--accent), var(--accent-2));
-  box-shadow: 0 0 20px rgba(6, 182, 212, 0.6),
-              0 0 40px rgba(139, 92, 246, 0.4);
-  animation: loaderPulse 2s ease-in-out infinite;
-}
-
-@keyframes loaderRotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-@keyframes loaderPulse {
+@keyframes preloaderGradientShift {
   0%, 100% {
-    transform: translate(-50%, -50%) scale(1);
     opacity: 1;
+    transform: scale(1);
   }
   50% {
-    transform: translate(-50%, -50%) scale(1.1);
-    opacity: 0.8;
+    opacity: 0.9;
+    transform: scale(1.05);
+  }
+}
+
+/* Main content container */
+.preloader-content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.preloader-content.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Elegant monogram with initials */
+.preloader-monogram {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.monogram-circle {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(6,182,212,0.1), rgba(139,92,246,0.1));
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 
+    0 8px 32px rgba(0,0,0,0.3),
+    inset 0 1px 0 rgba(255,255,255,0.1);
+  animation: monogramFloat 3s ease-in-out infinite;
+}
+
+.monogram-text {
+  font-family: 'Orbitron', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  font-size: 3rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 0.05em;
+  position: relative;
+  z-index: 2;
+  animation: monogramGlow 2s ease-in-out infinite;
+  /* Ensure text is visible immediately with system font, then swaps to Orbitron */
+  font-display: swap;
+}
+
+.monogram-ring {
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  border-top-color: var(--accent);
+  border-right-color: var(--accent-2);
+  animation: monogramRotate 3s linear infinite;
+  opacity: 0.6;
+}
+
+.monogram-glow {
+  position: absolute;
+  inset: -20px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(6,182,212,0.2) 0%, transparent 70%);
+  animation: monogramPulse 2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes monogramFloat {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-10px) scale(1.02);
+  }
+}
+
+@keyframes monogramGlow {
+  0%, 100% {
+    filter: drop-shadow(0 0 10px rgba(6, 182, 212, 0.4));
+  }
+  50% {
+    filter: drop-shadow(0 0 20px rgba(139, 92, 246, 0.6));
+  }
+}
+
+@keyframes monogramRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes monogramPulse {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.1);
+  }
+}
+
+/* Minimal progress indicator */
+.preloader-progress-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 300px;
+  max-width: 90vw;
+}
+
+.preloader-progress-track {
+  width: 100%;
+  height: 2px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+}
+
+.preloader-progress-track::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(6,182,212,0.2) 50%, 
+    transparent 100%);
+  animation: progressShimmer 2s ease-in-out infinite;
+}
+
+.preloader-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  border-radius: 2px;
+  box-shadow: 
+    0 0 10px rgba(6, 182, 212, 0.6),
+    0 0 20px rgba(139, 92, 246, 0.4);
+  transition: width 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.preloader-progress-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(255,255,255,0.3), 
+    transparent);
+  animation: progressSweep 1.5s ease-in-out infinite;
+}
+
+.preloader-progress-text {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  opacity: 0;
+  animation: fadeIn 0.6s ease 0.8s forwards;
+}
+
+@keyframes progressShimmer {
+  0%, 100% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes progressSweep {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .preloader-content {
+    gap: 2.5rem;
+  }
+
+  .preloader-monogram {
+    width: 120px;
+    height: 120px;
+  }
+
+  .monogram-text {
+    font-size: 2.5rem;
+  }
+
+  .preloader-progress-wrapper {
+    width: 260px;
   }
 }
 
@@ -3411,101 +3590,10 @@ defs {
   .fixed-social-btn{ top:0.6rem; right:0.6rem }
 }
 
-/* Landscape orientation on mobile devices - show horizontally at bottom like portrait */
-@media (max-width: 900px) and (orientation: landscape) {
+/* Hide sidebar completely for small to medium devices in landscape orientation */
+@media (max-width: 1024px) and (orientation: landscape) {
   .sidebar{
-    display: flex;
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    top: auto;
-    transform: none;
-    z-index: 160;
-    justify-content: center;
-    padding: 0.4rem 0.3rem calc(env(safe-area-inset-bottom, 0px) + 0.4rem);
-    background: transparent;
-    max-height: none;
-    overflow: visible;
-    flex-direction: row;
-    align-items: center;
-    gap: 0;
-  }
-
-  .sidebar-nav{
-    padding: 0.4rem 0.5rem;
-    border-radius: 8px 8px 0 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 0.5rem;
-    max-width: calc(100% - 1rem);
-  }
-
-  .sidebar-container{
-    flex-direction: row;
-    gap: 0.3rem;
-  }
-
-  .sidebar-link{
-    flex-direction: column;
-    padding: 0.4rem;
-    border-radius: 8px;
-    min-width: 32px;
-    min-height: 32px;
-  }
-
-  .sidebar-label{
-    display: none;
-  }
-
-  .sidebar-icon-wrapper{
-    width: 1.2rem;
-    height: 1.2rem;
-  }
-
-  .sidebar-icon svg{
-    width: 12px;
-    height: 12px;
-  }
-
-  .sidebar-progress-ring{
-    display: none; /* Hide progress ring in landscape to save space */
-  }
-}
-
-/* Extra small landscape devices (like 932 x 430) */
-@media (max-width: 932px) and (max-height: 500px) and (orientation: landscape) {
-  .sidebar{
-    padding: 0.3rem 0.2rem calc(env(safe-area-inset-bottom, 0px) + 0.3rem);
-  }
-
-  .sidebar-nav{
-    padding: 0.3rem 0.4rem;
-    margin: 0 0.4rem;
-    max-width: calc(100% - 0.8rem);
-    border-radius: 6px 6px 0 0;
-  }
-
-  .sidebar-container{
-    gap: 0.25rem;
-  }
-
-  .sidebar-link{
-    padding: 0.3rem;
-    min-width: 28px;
-    min-height: 28px;
-    border-radius: 6px;
-  }
-
-  .sidebar-icon-wrapper{
-    width: 1rem;
-    height: 1rem;
-  }
-
-  .sidebar-icon svg{
-    width: 10px;
-    height: 10px;
+    display: none !important;
   }
 }
 
