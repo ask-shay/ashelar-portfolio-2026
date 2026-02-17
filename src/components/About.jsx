@@ -11,11 +11,6 @@ export default function About() {
     
     async function initVanta() {
       try {
-        if (typeof window !== 'undefined' && window.innerWidth < 768) {
-          setVantaLoaded(true)
-          return
-        }
-
         if (!THREE || !THREE.PerspectiveCamera) {
           console.warn('THREE.js not fully loaded, skipping Vanta initialization')
           setVantaLoaded(true)
@@ -27,10 +22,12 @@ export default function About() {
         
         if (!vantaRef.current || !mounted) return
 
+        const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
+
         vantaEffect.current = DOTS({
           el: vantaRef.current,
           THREE: THREE,
-          mouseControls: true,
+          mouseControls: !isMobile, // Disable mouse controls on mobile
           touchControls: true,
           gyroControls: false,
           minHeight: 200.00,
@@ -40,11 +37,11 @@ export default function About() {
           color: 0x06b6d4,
           color2: 0x8b5cf6,
           backgroundColor: 0x071018,
-          size: 3.5,
-          spacing: 45
+          size: isMobile ? 3.0 : 3.5, // Slightly smaller on mobile
+          spacing: isMobile ? 40 : 45 // Tighter spacing on mobile
         })
         setVantaLoaded(true)
-        console.info('Vanta DOTS initialized on About section')
+        console.info(`Vanta DOTS initialized on About section (${isMobile ? 'mobile' : 'desktop'})`)
       } catch (err) {
         console.error('Vanta DOTS failed:', err)
         setVantaLoaded(true)

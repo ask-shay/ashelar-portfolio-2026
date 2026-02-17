@@ -109,9 +109,7 @@ export default function Hero({ onStoryClick }){
             {/* Main tagline */}
             <h2 className="hero-tagline">Software Engineer (Full Stack)</h2>
             
-            {/* Social icons removed from Hero - use header social links instead */}
-
-            {/* Rotating Resume Download Indicator - Bottom Right */}
+            {/* Rotating Resume Download Indicator - Below tagline */}
             <div className="story-spinner" onClick={handleResumeDownload} role="button" aria-label="Download Resume">
               <div className="spinner-ring"></div>
               <div className="spinner-center">

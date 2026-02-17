@@ -186,7 +186,7 @@
 @keyframes monogramFloat {
   0%, 100% {
     transform: translateY(0) scale(1);
-  }
+}
   50% {
     transform: translateY(-10px) scale(1.02);
   }
@@ -204,7 +204,7 @@
 @keyframes monogramRotate {
   from {
     transform: rotate(0deg);
-  }
+}
   to {
     transform: rotate(360deg);
   }
@@ -738,6 +738,17 @@
   justify-content:center;
   text-align:center;
   gap:0;
+}
+
+/* Add spacing for story-spinner on mobile */
+@media (max-width: 768px) {
+  .hero-center {
+    gap: 0;
+  }
+  
+  .hero-tagline {
+    margin-bottom: 0;
+  }
 }
 
 .hero-intro{
@@ -3474,25 +3485,26 @@ defs {
   .social-link{ width:44px; height:44px; border-radius:10px }
   
   .hero .story-spinner {
-    position: absolute !important;
-    left: 50% !important;
+    position: static !important;
+    left: auto !important;
     right: auto !important;
-    bottom: -9rem !important;
+    bottom: auto !important;
     top: auto !important;
-    transform: translateX(-50%) !important;
-    margin: 0 !important;
-    width: 100px !important;
-    height: 100px !important;
+    transform: none !important;
+    margin: 2rem auto 0 auto !important;
+    width: 90px !important;
+    height: 90px !important;
     display: flex !important;
   }
   
   .hero .spinner-center { 
-    width: 76px !important; 
-    height: 76px !important; 
+    width: 70px !important; 
+    height: 70px !important; 
   }
   
   .hero .spinner-center-text {
-    font-size: 0.65rem !important;
+    font-size: 0.6rem !important;
+    letter-spacing: 0.5px !important;
   }
 }
 
@@ -3594,6 +3606,47 @@ defs {
 @media (max-width: 1024px) and (orientation: landscape) {
   .sidebar{
     display: none !important;
+  }
+  
+  /* Center and properly size story-spinner for mobile landscape */
+  .hero .story-spinner {
+    position: static !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    top: auto !important;
+    transform: none !important;
+    margin: 1.2rem auto 0 auto !important;
+    width: 75px !important;
+    height: 75px !important;
+    display: flex !important;
+  }
+
+  .hero .spinner-center { 
+    width: 58px !important; 
+    height: 58px !important; 
+  }
+
+  .hero .spinner-center-text {
+    font-size: 0.5rem !important;
+    letter-spacing: 0.2px !important;
+    line-height: 1.1 !important;
+    padding: 0 2px !important;
+  }
+
+  .hero .spinner-ring {
+    width: 100% !important;
+    height: 100% !important;
+    border-width: 1.5px !important;
+  }
+
+  /* Ensure hero content is properly centered in landscape */
+  .hero-center {
+    gap: 0 !important;
+  }
+
+  .hero-tagline {
+    margin-bottom: 0 !important;
   }
 }
 

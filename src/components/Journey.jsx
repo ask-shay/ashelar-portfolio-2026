@@ -11,11 +11,6 @@ export default function Journey() {
     
     async function initVanta() {
       try {
-        if (typeof window !== 'undefined' && window.innerWidth < 768) {
-          setVantaLoaded(true)
-          return
-        }
-
         if (!THREE || !THREE.PerspectiveCamera) {
           console.warn('THREE.js not fully loaded, skipping Vanta initialization')
           setVantaLoaded(true)
@@ -27,10 +22,12 @@ export default function Journey() {
         
         if (!vantaRef.current || !mounted) return
 
+        const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
+
         vantaEffect.current = GLOBE({
           el: vantaRef.current,
           THREE: THREE,
-          mouseControls: true,
+          mouseControls: !isMobile, // Disable mouse controls on mobile
           touchControls: true,
           gyroControls: false,
           minHeight: 200.00,
@@ -41,7 +38,7 @@ export default function Journey() {
           backgroundColor: 0x071018
         })
         setVantaLoaded(true)
-        console.info('Vanta GLOBE initialized on Journey section')
+        console.info(`Vanta GLOBE initialized on Journey section (${isMobile ? 'mobile' : 'desktop'})`)
       } catch (err) {
         console.error('Vanta GLOBE failed:', err)
         setVantaLoaded(true)

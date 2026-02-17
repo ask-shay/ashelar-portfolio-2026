@@ -11,11 +11,6 @@ export default function Services() {
     
     async function initVanta() {
       try {
-        if (typeof window !== 'undefined' && window.innerWidth < 768) {
-          setVantaLoaded(true)
-          return
-        }
-
         if (!THREE || !THREE.PerspectiveCamera) {
           console.warn('THREE.js not fully loaded, skipping Vanta initialization')
           setVantaLoaded(true)
@@ -27,10 +22,12 @@ export default function Services() {
         
         if (!vantaRef.current || !mounted) return
 
+        const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
+
         vantaEffect.current = RINGS({
           el: vantaRef.current,
           THREE: THREE,
-          mouseControls: true,
+          mouseControls: !isMobile, // Disable mouse controls on mobile
           touchControls: true,
           gyroControls: false,
           minHeight: 200.00,
@@ -39,11 +36,11 @@ export default function Services() {
           scaleMobile: 1.0,
           color: 0x8b5cf6,
           backgroundColor: 0x071018,
-          maxDistance: 28,
-          maxSpeed: 1.5
+          maxDistance: isMobile ? 25 : 28, // Slightly reduced on mobile
+          maxSpeed: isMobile ? 1.2 : 1.5 // Slightly slower on mobile
         })
         setVantaLoaded(true)
-        console.info('Vanta RINGS initialized on Services section')
+        console.info(`Vanta RINGS initialized on Services section (${isMobile ? 'mobile' : 'desktop'})`)
       } catch (err) {
         console.error('Vanta RINGS failed:', err)
         setVantaLoaded(true)
